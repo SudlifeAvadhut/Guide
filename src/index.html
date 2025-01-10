@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <title>SwaggerPortal</title>
@@ -13,15 +14,73 @@
   <link id="theme-style" rel="stylesheet" href="assets/CSS/portal.css">
 
 </head>
+
 <body class="mat-typography">
+
+  <script>
+    window.onload = function () {
+      /* ===== Responsive Sidepanel ====== */
+      const sidePanelToggler = document.getElementById('sidepanel-toggler');
+      const sidePanel = document.getElementById('app-sidepanel');
+      const sidePanelDrop = document.getElementById('sidepanel-drop');
+      const sidePanelClose = document.getElementById('sidepanel-close');
+
+      window.addEventListener('load', function () {
+        responsiveSidePanel();
+      });
+
+      window.addEventListener('resize', function () {
+        responsiveSidePanel();
+      });
+
+
+      function responsiveSidePanel() {
+        let w = window.innerWidth;
+        if (w >= 1200) {
+          // if larger 
+          //console.log('larger');
+          console.log(sidePanel)
+          sidePanel.classList.remove('sidepanel-hidden');
+          sidePanel.classList.add('sidepanel-visible');
+
+        } else {
+          // if smaller
+          //console.log('smaller');
+          sidePanel.classList.remove('sidepanel-visible');
+          sidePanel.classList.add('sidepanel-hidden');
+        }
+      };
+
+      sidePanelToggler.addEventListener('click', () => {
+        if (sidePanel.classList.contains('sidepanel-visible')) {
+          console.log('visible');
+          sidePanel.classList.remove('sidepanel-visible');
+          sidePanel.classList.add('sidepanel-hidden');
+
+        } else {
+          console.log('hidden');
+          sidePanel.classList.remove('sidepanel-hidden');
+          sidePanel.classList.add('sidepanel-visible');
+        }
+      });
+
+      sidePanelClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        sidePanelToggler.click();
+      });
+
+      sidePanelDrop.addEventListener('click', (e) => {
+        sidePanelToggler.click();
+      });
+    }
+  </script>
   <app-root></app-root>
 
-   <!-- Javascript -->          
-    <script src="assets/JS/popper.min.js"></script>
-    <script src="assets/JS/bootstrap.min.js"></script>  
+  <!-- Javascript -->
+  <script src="assets/JS/popper.min.js"></script>
+  <script src="assets/JS/bootstrap.min.js"></script>
 
-    
-    <!-- Page Specific JS -->
-    <script src="assets/JS/app.js"></script> 
+
 </body>
+
 </html>
